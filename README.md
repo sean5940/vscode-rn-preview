@@ -4,7 +4,7 @@ See React Native components in a VS Code · Cursor panel without building the ap
 
 _Korean: [README.ko.md](README.ko.md)_
 
-![Variants and device widths of one component, side by side](images/screenshot.png)
+![Opening a preview beside a component, then jumping to its declaration](images/demo.gif)
 
 The drawing is done by the bundled [`rn-preview`](https://github.com/sean5940/rn-preview) tool's dev server,
 which renders your components through `react-native-web`. This extension starts that server and mounts it in a panel.
@@ -45,7 +45,11 @@ If there is no declaration, a draft is created on the spot and rendered. Two but
 | Button      | What it does                                                                                          |
 | ----------- | ----------------------------------------------------------------------------------------------------- |
 | `Refresh`   | Returns to the initial view, discarding variant and state changes made in cells, and reloads          |
-| `Open code` | Opens the declaration you are looking at in an editor tab. Come back via `▶ Open preview` in that tab |
+| `Open code` | Opens the declaration you are looking at in an editor tab. Come back via `▶ Show preview` in that tab |
+
+A declaration lists the variants and device widths to draw, and every combination sits side by side:
+
+![Variants and device widths of one component, side by side](images/screenshot.png)
 
 How to write a declaration (variants, widths, font scales, mocked responses, states) is in the
 [rn-preview README](https://github.com/sean5940/rn-preview#declaration-files).

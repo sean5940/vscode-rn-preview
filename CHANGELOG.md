@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- The README opens with a recording of the extension in the editor and links to both stores.
+
 ## 0.4.0
 
 First public release.

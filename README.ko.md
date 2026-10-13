@@ -4,7 +4,7 @@ React Native 컴포넌트를 앱을 빌드하지 않고 VS Code·Cursor 패널�
 
 _English: [README.md](README.md)_
 
-![컴포넌트 하나의 변형과 기기 폭을 나란히 그린 화면](images/screenshot.png)
+![컴포넌트 옆에 프리뷰를 열고 선언으로 넘어가는 화면](images/demo.gif)
 
 그리는 일은 확장에 실린 [`rn-preview`](https://github.com/sean5940/rn-preview) 도구의 개발 서버가
 `react-native-web` 으로 맡습니다. 이 확장은 그 서버를 띄우고 패널에 답니다. 화면을 캡처해 옮기지 않으므로 패널
@@ -45,6 +45,10 @@ _English: [README.md](README.md)_
 | ----------- | -------------------------------------------------------------------------------- |
 | `Refresh`   | 처음 화면으로 되돌립니다. 칸에서 바꾼 변형·상태를 버리고 다시 불러옵니다         |
 | `Open code` | 지금 보고 있는 선언을 편집기 탭으로 엽니다. 돌아올 때는 그 탭의 `▶ Show preview` |
+
+선언에 그릴 변형과 기기 폭을 적으면 모든 조합이 나란히 놓입니다.
+
+![컴포넌트 하나의 변형과 기기 폭을 나란히 그린 화면](images/screenshot.png)
 
 선언 쓰는 법(변형·폭·글자 배율·응답 mock·상태)은
 [rn-preview README](https://github.com/sean5940/rn-preview/blob/main/README.ko.md#선언-파일) 에 있습니다.
