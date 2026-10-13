@@ -20,6 +20,8 @@ To hand installation to a coding agent, pass [docs/AGENT-SETUP.md](docs/AGENT-SE
 
 - **VS Code**: from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sean5940.vscode-rn-preview),
   or `code --install-extension sean5940.vscode-rn-preview`.
+- **Cursor and other VS Code forks**: from [Open VSX](https://open-vsx.org/extension/sean5940/vscode-rn-preview), or
+  `cursor --install-extension sean5940.vscode-rn-preview`.
 - **Any editor**: download the `.vsix` from [Releases](https://github.com/sean5940/vscode-rn-preview/releases) and run
   `Extensions: Install from VSIX...`.
 

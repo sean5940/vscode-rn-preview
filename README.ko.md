@@ -20,6 +20,8 @@ _English: [README.md](README.md)_
 
 - **VS Code**: [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sean5940.vscode-rn-preview)
   에서 설치하거나 `code --install-extension sean5940.vscode-rn-preview` 를 실행합니다.
+- **Cursor 와 다른 VS Code 계열 편집기**: [Open VSX](https://open-vsx.org/extension/sean5940/vscode-rn-preview) 에서
+  설치하거나 `cursor --install-extension sean5940.vscode-rn-preview` 를 실행합니다.
 - **모든 편집기**: [Releases](https://github.com/sean5940/vscode-rn-preview/releases) 에서 `.vsix` 를 받아
   `Extensions: Install from VSIX...` 로 고릅니다.
 
