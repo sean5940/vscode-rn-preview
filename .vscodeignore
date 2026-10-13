@@ -1,0 +1,10 @@
+**
+!dist/extension.cjs
+!tool/**
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
+!images/icon.png
+tool/**/node_modules/**
+tool/**/*.test.ts

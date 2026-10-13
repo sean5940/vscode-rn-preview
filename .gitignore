@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+# Copied from rn-preview at publish time. The original is the source of truth, so the copy is not committed.
+tool/
+*.vsix
+.DS_Store
+*.log

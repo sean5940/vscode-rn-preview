@@ -1,0 +1,154 @@
+{
+    "name": "vscode-rn-preview",
+    "displayName": "RN Preview",
+    "description": "Render React Native components in an editor panel without building the app.",
+    "version": "0.4.0",
+    "publisher": "sean5940",
+    "license": "MIT",
+    "private": true,
+    "preview": true,
+    "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "#1E1B4B",
+        "theme": "dark"
+    },
+    "homepage": "https://github.com/sean5940/vscode-rn-preview#readme",
+    "bugs": {
+        "url": "https://github.com/sean5940/vscode-rn-preview/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sean5940/vscode-rn-preview.git"
+    },
+    "type": "module",
+    "engines": {
+        "node": ">=22",
+        "vscode": "^1.96.0"
+    },
+    "categories": [
+        "Visualization",
+        "Other"
+    ],
+    "keywords": [
+        "react native",
+        "react-native",
+        "expo",
+        "preview",
+        "component preview",
+        "react-native-web",
+        "storybook alternative"
+    ],
+    "extensionKind": [
+        "workspace"
+    ],
+    "activationEvents": [
+        "onLanguage:typescriptreact"
+    ],
+    "main": "./dist/extension.cjs",
+    "scripts": {
+        "bundle": "node esbuild.mjs",
+        "bundle:watch": "node esbuild.mjs --watch",
+        "check-types": "tsc --noEmit",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "sync-tool": "node scripts/syncTool.mjs",
+        "verify": "npm run check-types && npm run format:check && npm run test && npm run bundle",
+        "package:vsix": "npm run verify && npm run sync-tool && vsce package --no-dependencies"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "rnPreview.open",
+                "title": "Open preview",
+                "category": "RN Preview",
+                "icon": "$(preview)"
+            },
+            {
+                "command": "rnPreview.restartServer",
+                "title": "Restart preview server",
+                "category": "RN Preview",
+                "icon": "$(debug-restart)"
+            },
+            {
+                "command": "rnPreview.stopServer",
+                "title": "Stop preview server",
+                "category": "RN Preview",
+                "icon": "$(debug-stop)"
+            },
+            {
+                "command": "rnPreview.showOutput",
+                "title": "Show preview server log",
+                "category": "RN Preview",
+                "icon": "$(output)"
+            },
+            {
+                "command": "rnPreview.openDeclaration",
+                "title": "Open preview code",
+                "category": "RN Preview",
+                "icon": "$(code)"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "rnPreview.open",
+                    "when": "resourceFilename =~ /\\.preview\\.tsx$/",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "rnPreview.openDeclaration",
+                    "when": "rnPreview.panelActive || activeWebviewPanelId == 'rnPreview.panel'",
+                    "group": "navigation@1"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "RN Preview",
+            "properties": {
+                "rnPreview.projectPath": {
+                    "type": "string",
+                    "default": "",
+                    "scope": "machine-overridable",
+                    "markdownDescription": "Path to the rn-preview tool. Left empty, the bundled tool is used. Point this at your own clone only when working on the tool itself."
+                },
+                "rnPreview.projectRoot": {
+                    "type": "string",
+                    "default": "",
+                    "scope": "machine-overridable",
+                    "markdownDescription": "Path to the React Native project to preview. Left empty, an open folder that depends on `react-native` is used."
+                },
+                "rnPreview.previewRoot": {
+                    "type": "string",
+                    "default": "previews",
+                    "markdownDescription": "Declaration file directory, relative to the project. The `rn-preview.config.json` in this directory holds the per-project settings: the source root, module overrides, resolution detours, and packages to empty out."
+                },
+                "rnPreview.port": {
+                    "type": "integer",
+                    "default": 5173,
+                    "minimum": 1024,
+                    "maximum": 65535,
+                    "description": "Port for the preview dev server."
+                },
+                "rnPreview.startTimeoutMs": {
+                    "type": "integer",
+                    "default": 60000,
+                    "minimum": 5000,
+                    "maximum": 300000,
+                    "description": "How long to wait for the dev server to come up, in milliseconds."
+                }
+            }
+        }
+    },
+    "devDependencies": {
+        "@types/node": "22.20.1",
+        "@types/vscode": "1.96.0",
+        "@vscode/vsce": "3.9.2",
+        "esbuild": "0.28.1",
+        "ovsx": "1.2.0",
+        "prettier": "3.9.5",
+        "typescript": "5.8.3",
+        "vitest": "4.1.10"
+    }
+}
