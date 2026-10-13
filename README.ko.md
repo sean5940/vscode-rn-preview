@@ -16,6 +16,13 @@ _English: [README.md](README.md)_
 
 에이전트에게 설치를 맡기려면 [docs/AGENT-SETUP.ko.md](docs/AGENT-SETUP.ko.md) 를 그대로 넘깁니다.
 
+## 설치
+
+- **VS Code**: [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sean5940.vscode-rn-preview)
+  에서 설치하거나 `code --install-extension sean5940.vscode-rn-preview` 를 실행합니다.
+- **모든 편집기**: [Releases](https://github.com/sean5940/vscode-rn-preview/releases) 에서 `.vsix` 를 받아
+  `Extensions: Install from VSIX...` 로 고릅니다.
+
 ## 준비물
 
 - VS Code 1.96 이상 또는 Cursor.
