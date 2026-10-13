@@ -1,9 +1,12 @@
 name: Build and release the extension
 
 # When the rn-preview tool changes, its sources are bundled, the extension is rebuilt, and the
-# result is published to a release, and to the VS Code Marketplace and Open VSX when their tokens
-# are set. The notify-extension workflow in the tool repository triggers this through
-# repository_dispatch.
+# result is published to a release, and to Open VSX when its token is set. The notify-extension
+# workflow in the tool repository triggers this through repository_dispatch.
+#
+# The VS Code Marketplace is not published to from here. It only accepts Azure DevOps tokens
+# scoped to all organizations, and those are retired on 2026-12-01. The .vsix attached to the
+# release is uploaded on the Marketplace management page instead (CONTRIBUTING.md).
 #
 # It does not run on its own pushes. The version bump is committed to main, so with push as a
 # trigger that commit would call this workflow again and loop forever.
@@ -29,10 +32,9 @@ concurrency:
 jobs:
     release:
         runs-on: ubuntu-latest
-        # Store tokens are read here so the publish steps can be skipped when one is not set. A step's
-        # `if` cannot read secrets directly.
+        # The store token is read here so the publish step can be skipped when it is not set. A
+        # step's `if` cannot read secrets directly.
         env:
-            VSCE_PAT: ${{ secrets.VSCE_PAT }}
             OVSX_PAT: ${{ secrets.OVSX_PAT }}
         steps:
             # A layout that keeps the tool as a sibling. syncTool's default path (`../rn-preview`) fits as is.
@@ -102,13 +104,8 @@ jobs:
                     --title "v${VERSION}" \
                     --notes "Extension rebuilt with the latest rn-preview tool changes. Download the .vsix and select it in your editor through \`Extensions: Install from VSIX...\`."
 
-            # VS Code installs from the Marketplace, Cursor and other VS Code forks from Open VSX. The
-            # file published is the one attached to the release, so the three never differ.
-            - name: Publish to the Visual Studio Marketplace
-              if: env.VSCE_PAT != ''
-              working-directory: vscode-rn-preview
-              run: npx vsce publish --packagePath "vscode-rn-preview-${VERSION}.vsix"
-
+            # Cursor and other VS Code forks install from Open VSX. The file published is the one
+            # attached to the release, so the two never differ.
             - name: Publish to Open VSX
               if: env.OVSX_PAT != ''
               working-directory: vscode-rn-preview
