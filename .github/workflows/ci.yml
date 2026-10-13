@@ -1,0 +1,49 @@
+name: CI
+
+# Runs on every pull request and on main: types, format, tests and bundle, then packages the .vsix
+# so a change that breaks packaging fails here rather than in the release workflow.
+
+on:
+    pull_request:
+    push:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+        steps:
+            # A layout that keeps the tool as a sibling, the same as the release workflow.
+            - name: Check out the extension repository
+              uses: actions/checkout@v4
+              with:
+                  path: vscode-rn-preview
+
+            - name: Check out the preview tool
+              uses: actions/checkout@v4
+              with:
+                  repository: sean5940/rn-preview
+                  ref: main
+                  path: rn-preview
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+                  cache-dependency-path: vscode-rn-preview/package-lock.json
+
+            - name: Install dependencies
+              working-directory: vscode-rn-preview
+              run: npm ci
+
+            - name: Verify
+              working-directory: vscode-rn-preview
+              run: npm run verify
+
+            - name: Package
+              working-directory: vscode-rn-preview
+              run: |
+                  node scripts/syncTool.mjs ../rn-preview
+                  npx vsce package --no-dependencies
