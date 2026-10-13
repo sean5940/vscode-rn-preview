@@ -2,7 +2,7 @@
     "name": "vscode-rn-preview",
     "displayName": "RN Preview",
     "description": "Render React Native components in an editor panel without building the app.",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "publisher": "sean5940",
     "license": "MIT",
     "private": true,
